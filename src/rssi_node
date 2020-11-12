@@ -5,7 +5,7 @@ import sys
 import rospy
 from std_msgs.msg import String
 from rssi.devices import WifiDevice
-import thread
+import _thread
 from krp_localization.msg import RSSI, RSSIData
 import time
 
