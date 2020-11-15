@@ -96,7 +96,7 @@ class GPcore(SensorModel):
         self.verbose    = kwargs.get('verbose',False)
 
         if self.debug:
-            print 'class GP init works'
+            print('class GP init works')
 
     def save(self,filepath='last_model.p'):
         """
@@ -124,7 +124,7 @@ class GPcore(SensorModel):
             import pickle
 
         with open(filepath, 'rb') as f:
-            tmp_dict = pickle.load(f)
+            tmp_dict = pickle.load(f, encoding='latin1')
 
         self.__dict__.update(tmp_dict)
 
@@ -181,7 +181,7 @@ class GP(GPcore):
             self.gp    = '\n-> Run optimize()'
 
         if self.debug:
-            print 'class GP init works'
+            print('class GP init works')
 
     def optimize(self,**kwargs):
         self.gp = GPy.models.GPRegression(self.data['X'],self.data['Y'],**kwargs)
@@ -240,7 +240,7 @@ class hGP(GPcore):
         self.gp    = '\n-> Run optimize()'
 
         if self.debug:
-            print 'class hGP init works'
+            print('class hGP init works')
 
     def optimize(self,**kwargs):
         AP = kwargs.get('AP','all')
