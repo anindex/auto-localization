@@ -8,6 +8,7 @@ import copy
 import rospy
 import pickle
 import rospkg
+import traceback
 
 #ros messages
 from std_msgs.msg import Float64MultiArray
@@ -139,8 +140,8 @@ class RSSILocalizationServer():
                 rospy.logerr('[handle_loc] Loc returned None')
                 return None
         except:
-            e = sys.exc_info()[0]
-            rospy.logerr('[handle_loc] Localization failed: '+str(e))
+            e = traceback.format_exc()
+            rospy.logerr('Server file: '+e)
             return None
 
         loc[0].header.frame_id = self.ns+'/map'
