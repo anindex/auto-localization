@@ -136,17 +136,17 @@ class PathLoss(object):
 
         #Initiating optimization
         if verbose:
-            print 'Initializing optimization'
+            print('Initializing optimization')
 
         nll_values = np.inf*np.ones(self.data['Y'].shape[1])  #eval vector
 
         for ntime in range(ntimes):
             if verbose:
-                print 'Optimization ', ntime
+                print('Optimization ', ntime)
             #For each access points
             for ap in AP:
                 if verbose:
-                    print 'Access Point: ', ap
+                    print('Access Point: ', ap)
                     #print self.params[ap:ap+1]
 
                 args = (ap,self.mean_val,self.data)
@@ -163,9 +163,9 @@ class PathLoss(object):
 
                 if f < nll_values[ap]:   #if the optimization value is lower
                     if verbose:
-                        print '########## Param vector updated ##########'
-                        print x
-                        print nll_values[ap], ' to ', f
+                        print('########## Param vector updated ##########')
+                        print(x)
+                        print(nll_values[ap], ' to ', f)
                     nll_values[ap] = f              # update eval vector
                     self.params[ap,:] = x           # update params
 
@@ -259,7 +259,7 @@ class FLog(PathLoss):
         super(FLog,self).__init__(data,**kwargs)
         self.name = 'Log Function'
         if self.debug:
-            print 'class FLog init works'
+            print('class FLog init works')
 
 
     def mean_val(self,X,params=None,bounded=True):# params=None,i=0):

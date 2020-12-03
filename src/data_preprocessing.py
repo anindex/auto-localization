@@ -43,7 +43,7 @@ class Measurement():
 
         #retrieve mdata
         assert type(mdata) is RSSIData
-        self.time = long(mdata.start_time_ns)
+        self.time = int(mdata.start_time_ns)
         self.nap = len(mdata.macs)
         self.mac_dict = {mdata.macs[i]:i for i in np.arange(self.nap)}
         self.rssi  = [list(s.rssi) for s in mdata.rssi]
@@ -143,7 +143,7 @@ class Measurement():
             print('Incorrect key: ', str(fun))
 
         vector = default_val*np.ones(len(ref_mac_dict))
-        for mac,index in self.mac_dict.iteritems(): #for all macs in self
+        for mac,index in self.mac_dict.items(): #for all macs in self
             if mac in ref_mac_dict:
                 vector[ref_mac_dict[mac]] = rssi_fun[index] #put rss value in the adequate index from ref_mac_dict
         return vector
@@ -170,7 +170,7 @@ class Measurement():
         result.nap = len(result.mac_dict)
 
         result.rssi = result.rssi + [[]] * len(to_add_keys)
-        for other_mac,other_index in other.mac_dict.iteritems():
+        for other_mac,other_index in other.mac_dict.items():
             index = result.mac_dict[other_mac]
             result.rssi[index].extend(other.rssi[other_index])
 
@@ -199,7 +199,7 @@ class Measurement():
         if self.pose is not None:
             to_print+='Pose: {}\n'.format(str(self.pose))
         to_print += '{} {}\n'.format('mac address'.ljust(17), 'RSS')
-        for mac,index in self.mac_dict.iteritems():
+        for mac,index in self.mac_dict.items():
             to_print += '{} {}\n'.format(mac.ljust(17),self.rssi[index])
 
         return to_print
@@ -385,7 +385,7 @@ class PreprocessedData():
 
         filtered_macs = []
 
-        for mac,index in self.all_mac_dict.iteritems():
+        for mac,index in self.all_mac_dict.items():
             count = np.count_nonzero(self.data['Y'][:,index])
             if count >= min_points_per_AP:
                 filtered_macs.append(mac)

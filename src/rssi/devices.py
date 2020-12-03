@@ -46,7 +46,7 @@ class WifiDevice:
 
         elif self.mode == "iwlist":
             process = subprocess.Popen(["iwlist", self.device_name, "scan"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            lines = process.stdout.read().split("\n")
+            lines = process.stdout.read().decode('utf-8').split("\n")
             mac = ""
 
             for line in lines:
